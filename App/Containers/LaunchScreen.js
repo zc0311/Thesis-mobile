@@ -1,11 +1,20 @@
 import React from 'react'
 import { ScrollView, Text, Image, View } from 'react-native'
 import { Images } from '../Themes'
-
+import ButtonBox from './ButtonBox'
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
 export default class LaunchScreen extends React.Component {
+
+  openRunTracker = () => {
+    this.props.navigation.navigate('RunTracker')
+  }
+  openProfile = () => {
+    this.props.navigation.navigate('Profile')
+  }
+
+
 
   render () {
     return (
@@ -15,13 +24,11 @@ export default class LaunchScreen extends React.Component {
           <View style={styles.centered}>
             <Image source={Images.launch} style={styles.logo} />
           </View>
-
-          <View style={styles.section} >
-            <Image source={Images.ready} />
-            <Text style={styles.sectionText}>
-              {"This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite."}
-            </Text>
-          </View>
+          
+            <View style={styles.buttonsContainer}>
+              <ButtonBox onPress={this.openRunTracker} style={styles.componentButton} image={Images.chevronRight} text="Let's Run" />
+              <ButtonBox onPress={this.openProfile} style={styles.usageButton} image={Images.components} text='View Profile' />
+            </View>
 
         </ScrollView>
       </View>
