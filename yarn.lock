@@ -2823,10 +2823,13 @@ ignite-ir-boilerplate-2016@^0.2.1:
   dependencies:
     ramda "^0.23.0"
 
+<<<<<<< HEAD
 ignite-maps@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ignite-maps/-/ignite-maps-0.1.2.tgz#9b417215b8483bebd508e8e0823d48a6e0d7b4ef"
 
+=======
+>>>>>>> Initial commit.
 ignite-vector-icons@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/ignite-vector-icons/-/ignite-vector-icons-0.2.1.tgz#c8056f7ce344e058ae99664aaf5509a0c322cd1b"
@@ -4500,10 +4503,13 @@ react-native-experimental-navigation@0.26.x:
     fbjs "^0.8.1"
     react-addons-pure-render-mixin "^15.0.2"
 
+<<<<<<< HEAD
 react-native-maps@0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.13.0.tgz#f3d791a06d36d553bcc177514ee52fdea45474c0"
 
+=======
+>>>>>>> Initial commit.
 react-native-mock@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-mock/-/react-native-mock-0.3.1.tgz#13d22433c5351a8a7fb8aedd7862b614d087851c"
