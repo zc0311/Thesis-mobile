@@ -57,6 +57,7 @@ class RunTrackerScreen extends React.Component {
         ]}
         strokeColor="blue"
         strokeWidth={5}
+     
      />
     </MapView>
   </View>
