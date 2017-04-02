@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.airbnb.android.react.maps.MapsPackage;
+
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
