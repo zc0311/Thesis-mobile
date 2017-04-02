@@ -48,10 +48,7 @@
 		CD73147A353D4A1CB843556B /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB6622A2ECAE488DB322F35B /* Octicons.ttf */; };
 		BB0B2BB1456344EBA3667A8C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9432C0D05564DD49B1E4AB7 /* SimpleLineIcons.ttf */; };
 		1DFA5C602CF04DE2AD207719 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F325CBB29D104F40A85E1E7B /* Zocial.ttf */; };
-<<<<<<< HEAD
 		D26D4A5504BF4B91A30D39BC /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C618154E86D464583C7CE4A /* libAirMaps.a */; };
-=======
->>>>>>> Initial commit.
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,11 +284,8 @@
 		AB6622A2ECAE488DB322F35B /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		B9432C0D05564DD49B1E4AB7 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F325CBB29D104F40A85E1E7B /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-<<<<<<< HEAD
 		A99CDF4013994A6DA299AF39 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		3C618154E86D464583C7CE4A /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-=======
->>>>>>> Initial commit.
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,10 +315,7 @@
 				E593863AEA5448D7AAAF7FF6 /* libReactNativeConfig.a in Frameworks */,
 				0769E0C70AE54BF5B8B571A0 /* libRNDeviceInfo.a in Frameworks */,
 				8C3B083B128241E5B3DCEDEB /* libRNVectorIcons.a in Frameworks */,
-<<<<<<< HEAD
 				D26D4A5504BF4B91A30D39BC /* libAirMaps.a in Frameworks */,
-=======
->>>>>>> Initial commit.
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,10 +485,7 @@
 				8D7CB85E25594D9FA6DC0D11 /* ReactNativeConfig.xcodeproj */,
 				50DA7E2981354681BD9FCD94 /* RNDeviceInfo.xcodeproj */,
 				A358193414CD48D388910BF7 /* RNVectorIcons.xcodeproj */,
-<<<<<<< HEAD
 				A99CDF4013994A6DA299AF39 /* AirMaps.xcodeproj */,
-=======
->>>>>>> Initial commit.
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1057,20 +1045,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-=======
->>>>>>> Initial commit.
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Debug;
@@ -1094,20 +1076,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-=======
->>>>>>> Initial commit.
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Release;
@@ -1132,10 +1108,7 @@
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Debug;
@@ -1159,10 +1132,7 @@
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Release;
@@ -1195,20 +1165,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-=======
->>>>>>> Initial commit.
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Debug;
@@ -1241,20 +1205,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-=======
->>>>>>> Initial commit.
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/**",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Release;
@@ -1282,10 +1240,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Debug;
@@ -1313,10 +1268,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-=======
->>>>>>> Initial commit.
 				);
 			};
 			name = Release;

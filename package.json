@@ -35,15 +35,10 @@
     "react-native-config": "^0.2.1",
     "react-native-device-info": "^0.10.0",
     "react-native-drawer": "^2.3.0",
-<<<<<<< HEAD
     "react-native-maps": "0.13.0",
     "react-native-router-flux": "^3.37.0",
     "react-native-vector-icons": "^4.0.0",
     "react-navigation": "^1.0.0-beta.7",
-=======
-    "react-native-router-flux": "^3.37.0",
-    "react-native-vector-icons": "^4.0.0",
->>>>>>> Initial commit.
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-persist": "^4.1.0",
@@ -59,10 +54,7 @@
     "husky": "^0.13.1",
     "ignite-animatable": "^0.3.1",
     "ignite-ir-boilerplate-2016": "^0.2.1",
-<<<<<<< HEAD
     "ignite-maps": "^0.1.2",
-=======
->>>>>>> Initial commit.
     "ignite-vector-icons": "^0.2.1",
     "mockery": "^2.0.0",
     "nyc": "^10.1.2",
