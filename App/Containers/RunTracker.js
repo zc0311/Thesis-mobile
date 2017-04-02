@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
+import { View, ScrollView, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { Images } from './DevTheme'
 import MapView from 'react-native-maps'
@@ -9,6 +9,29 @@ import RunTrackerScreen from './RunTrackerScreen'
 
 
 class RunTracker extends React.Component {
+
+   state = {
+    initialPosition: 'unknown',
+    lastPosition: 'unknown',
+  };
+
+  watchID: ?number = null;
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var initialPosition = JSON.stringify(position);
+        this.setState({initialPosition});
+        console.log(initialPosition, "this is initial po")
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      var lastPosition = JSON.stringify(position);
+      this.setState({lastPosition});
+    });
+  }
 
 
   render () {
@@ -26,10 +49,11 @@ class RunTracker extends React.Component {
         <ScrollView style={styles.container}>
           <View style={{alignItems: 'center', paddingTop: 60}}>
           </View>
-          <View style={styles.section}>
+          {/*<View style={styles.section}>
             <Text style={styles.sectionText} >
             </Text>
-          </View>
+          </View>*/}
+          
           <View
     style={{
       alignItems: 'center'
@@ -40,13 +64,13 @@ class RunTracker extends React.Component {
         height: 320
       }}
       initialRegion={{
-        latitude: 50,
-        longitude: -122.4324,
+        latitude: 37.785834,
+        longitude: -122.406417,
         latitudeDelta: 1.1922,
         longitudeDelta: 1.1421,
       }}
     >
-    <MapView.Polyline
+    {/*<MapView.Polyline
         coordinates={[
           {latitude: 40, longitude: -100},
           {latitude: 50, longitude: -122.4324},
@@ -54,7 +78,7 @@ class RunTracker extends React.Component {
         ]}
         strokeColor="blue"
         strokeWidth={5}
-     />
+     />*/}
     </MapView>
   </View>
 
