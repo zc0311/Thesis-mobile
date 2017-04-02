@@ -2,7 +2,8 @@ import React from 'react'
 import { ScrollView, Text, Image, View } from 'react-native'
 import { Images } from '../Themes'
 import ButtonBox from './ButtonBox'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import {Actions as NavigationActions } from 'react-native-router-flux'
+
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 export default class LaunchScreen extends React.Component {
@@ -17,7 +18,7 @@ export default class LaunchScreen extends React.Component {
           </View>
             <View style={styles.buttonsContainer}>
               <ButtonBox onPress={NavigationActions.runTracker} style={styles.componentButton} image={Images.chevronRight} text="Let's Run" />
-              <ButtonBox style={styles.usageButton} image={Images.components} text='View Profile' />
+              <ButtonBox onPress={this.openProfile} style={styles.usageButton} image={Images.components} text='View Profile' />
             </View>
 
 
