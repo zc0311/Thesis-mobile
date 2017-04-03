@@ -13,6 +13,7 @@ import LoginScreen from '../Containers/LoginScreen'
 ***************************/
 
 class NavigationRouter extends Component {
+  
   render () {
     return (
       <Router>

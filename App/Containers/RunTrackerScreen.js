@@ -7,7 +7,6 @@ import styles from './Styles/RunTrackerScreenStyles'
 import RoundedButton from '../../App/Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
-
 class RunTrackerScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +16,10 @@ class RunTrackerScreen extends React.Component {
         timer: '',
         start: '', 
         end: '',
-        timeMsg: ''
+        timeMsg: '',
+        initialPosition: {},
+        lastPosition: {},
+        coordinates: []
       };
     }
 
@@ -72,58 +74,50 @@ class RunTrackerScreen extends React.Component {
     this.setState({text: 'start', timerOpacity: 0.0, timer: '0:00', end: endTime, timeMsg: timeMsg});
     window.alert(timeMsg);
   }
-   state = {
-    initialPosition: {},
-    lastPosition: {},
-    coordinates: []
-  };
+
 
   watchID: ?number = null;
 
-    componentDidMount() {
+  componentDidMount () {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        var initialPosition = JSON.stringify(position);
-        this.setState({initialPosition: position.coords});
-        this.setState({lastPosition: position.coords});
-        console.log(initialPosition, "this is init post")
-        
+        var initialPosition = JSON.stringify(position)
+        this.setState({initialPosition: position.coords})
+        this.setState({lastPosition: position.coords})
+        console.log(initialPosition, 'this is init post')
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+    )
     this.watchID = navigator.geolocation.watchPosition((position) => {
       this.setState({lastPosition: {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                latitudeDelta: 0.00922,
-                longitudeDelta: 0.00421,
-              }});
-      
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        latitudeDelta: 0.00922,
+        longitudeDelta: 0.00421
+      }})
+
       this.setState({
         coordinates: [...this.state.coordinates, {latitude: position.coords.latitude, longitude: position.coords.longitude}]
       }
       )
-      console.log("this is long for last pos",position.coords)
+      console.log('this is long for last pos', position.coords)
       console.log({latitude: position.coords.latitude, longitude: position.coords.longitude})
-
-    });
+    })
   }
-    componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+  componentWillUnmount () {
+    navigator.geolocation.clearWatch(this.watchID)
   }
-
 
   render () {
-    // console.log(this.state.initialPosition, "this is state")
-    // if(!this.state.initialPosition.latitude){
-    //   return (
-    //     <Text style={styles.title}>LOADING </Text>
-    //   )
-
-    // }
+    console.log(this.state.initialPosition, "this is state")
+    if(!this.state.initialPosition.latitude){
+      return (
+        <Text style={styles.title}>LOADING </Text>
+      )
+    }
     return (
-      
+
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
@@ -142,6 +136,7 @@ class RunTrackerScreen extends React.Component {
     }}><Text style={{fontSize: 50, paddingTop: 20, paddingBottom: 20, opacity: this.state.timerOpacity}}>
        {this.state.timer || '0:00'}
     </Text></View>
+          <View style={styles.section} />
           <View
             style={{
               alignItems: 'center'
@@ -155,18 +150,18 @@ class RunTrackerScreen extends React.Component {
                 latitude: this.state.lastPosition.latitude,
                 longitude: this.state.lastPosition.longitude,
                 latitudeDelta: 0.00022,
-                longitudeDelta: 0.00021,
+                longitudeDelta: 0.00021
               }}
 
-              showsUserLocation={true}
-              followsUserLocation={true}
-              showsCompass={true}
+              showsUserLocation
+              followsUserLocation
+              showsCompass
             >
-            <MapView.Polyline
+              <MapView.Polyline
                 coordinates={this.state.coordinates}
-                strokeColor="blue"
+                strokeColor='blue'
                 strokeWidth={5}
-            
+
             />
             </MapView.Animated>
           </View>
@@ -175,8 +170,6 @@ class RunTrackerScreen extends React.Component {
             text={this.state.text}
             onPress={this.handleClick}
           />
-
-          {/*<View style={styles.screenButtons} />*/}
 
         </ScrollView>
       </View>
