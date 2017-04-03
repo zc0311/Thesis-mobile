@@ -4,11 +4,74 @@ import { StackNavigator } from 'react-navigation'
 import { Images } from './DevTheme'
 import MapView from 'react-native-maps'
 import styles from './Styles/RunTrackerScreenStyles'
+import RoundedButton from '../../App/Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 
 class RunTrackerScreen extends React.Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        text: 'start',
+        timerOpacity: 0.0,
+        timer: '',
+        start: '', 
+        end: '',
+        timeMsg: ''
+      };
+    }
 
+  handleClick = () => {
+    if (this.state.text === 'start') {
+      this.startTimer();
+    } else {
+      this.stopTimer();
+    }
+  }
+
+  startTimer = () => {
+    var startTime = (Date.now()/1000).toFixed(2);
+    this.setState({text: 'stop', timerOpacity: 1.0, start: startTime});
+    var startTimeSeconds = Math.floor(startTime);
+    var sw = setInterval(() => {
+      var currentTimeSeconds = Math.floor(Date.now()/1000);
+      var secondsElapsed = currentTimeSeconds - startTimeSeconds;
+      var hours = Math.floor(secondsElapsed / 3600);
+      var minutes = Math.floor((secondsElapsed - (hours * 3600)) / 60);
+      var seconds = Math.floor(secondsElapsed - (hours * 3600) - (minutes * 60));
+      if (seconds < 10) {
+        seconds = '0' + seconds;
+      }
+      if (secondsElapsed >= 3600) {
+        if (minutes < 10) {
+          minutes = '0' + minutes;
+        }
+        var timer = hours + ':' + minutes + ':' + seconds;
+      } else {
+        var timer = minutes + ':' + seconds;
+      }
+      if (this.state.text === 'start') {
+        clearInterval(sw);
+      } else {
+        this.setState({timer: timer});
+      }
+    }, 1000)
+  }
+
+  stopTimer = () => {
+    var endTime = (Date.now()/1000).toFixed(2);
+    var totalSeconds = (endTime - this.state.start).toFixed(2);
+    var hours = Math.floor(totalSeconds / 3600);
+    var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+    var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
+    if (totalSeconds >= 3600) {
+      var timeMsg = 'Your total time: ' + hours + ' hr ' + minutes + ' min ' + seconds + ' sec';
+    } else {
+      var timeMsg = 'Your total time: ' + minutes + ' min ' + seconds + ' sec';
+    }
+    this.setState({text: 'start', timerOpacity: 0.0, timer: '0:00', end: endTime, timeMsg: timeMsg});
+    window.alert(timeMsg);
+  }
    state = {
     initialPosition: {},
     lastPosition: {},
@@ -52,7 +115,6 @@ class RunTrackerScreen extends React.Component {
 
 
   render () {
-    console.log("THIS IS STATEEEEEE", this.state)
     // console.log(this.state.initialPosition, "this is state")
     // if(!this.state.initialPosition.latitude){
     //   return (
@@ -72,14 +134,14 @@ class RunTrackerScreen extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <ScrollView style={styles.container}>
-          <View style={{alignItems: 'center', paddingTop: 60}}>
-            <Image source={Images.usageExamples} style={styles.logo} />
-            <Text style={styles.titleText}>RUN</Text>
-          </View>
 
-          <View style={styles.section}>
-          </View>
+        <ScrollView style={styles.container}>
+
+    <View style={{
+      alignItems: 'center'
+    }}><Text style={{fontSize: 50, paddingTop: 20, paddingBottom: 20, opacity: this.state.timerOpacity}}>
+       {this.state.timer || '0:00'}
+    </Text></View>
           <View
             style={{
               alignItems: 'center'
@@ -109,6 +171,10 @@ class RunTrackerScreen extends React.Component {
             </MapView.Animated>
           </View>
 
+         <RoundedButton
+            text={this.state.text}
+            onPress={this.handleClick}
+          />
 
           {/*<View style={styles.screenButtons} />*/}
 
