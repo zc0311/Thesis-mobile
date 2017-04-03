@@ -5,11 +5,8 @@ import { Images } from './DevTheme'
 import MapView from 'react-native-maps'
 import styles from './Styles/RunTrackerScreenStyles'
 import RoundedButton from '../../App/Components/RoundedButton'
-<<<<<<< HEAD
 import { Actions as NavigationActions } from 'react-native-router-flux'
-=======
 import PopupDialog, {dialogStyle} from 'react-native-popup-dialog';
->>>>>>> time alert popup
 
 class RunTrackerScreen extends React.Component {
   constructor(props) {
@@ -156,7 +153,6 @@ class RunTrackerScreen extends React.Component {
     }}><Text style={{fontSize: 50, paddingTop: 20, paddingBottom: 20, opacity: this.state.timerOpacity}}>
        {this.state.timer || '0:00'}
     </Text></View>
-<<<<<<< HEAD
           <View style={styles.section} />
           <View
             style={{
@@ -186,39 +182,6 @@ class RunTrackerScreen extends React.Component {
             />
             </MapView.Animated>
           </View>
-=======
-  
-          <View
-    style={{
-      alignItems: 'center'
-    }}>
-    <MapView
-      style={{
-        width: 320,
-        height: 320
-      }}
-      initialRegion={{
-        latitude: 50,
-        longitude: -122.4324,
-        latitudeDelta: 1.1922,
-        longitudeDelta: 1.1421,
-      }}
-    >
-
-    <MapView.Polyline
-        coordinates={[
-          {latitude: 40, longitude: -100},
-          {latitude: 50, longitude: -122.4324},
-          {latitude: 70, longitude: -130}
-        ]}
-        strokeColor="blue"
-        strokeWidth={5}
-     
-     />
-    </MapView>
-  </View>
->>>>>>> time alert popup
-
          <RoundedButton
             text={this.state.text}
             onPress={this.handleClick}
