@@ -5,7 +5,8 @@ import NavigationDrawer from './NavigationDrawer'
 
 // screens identified by the router
 import LaunchScreen from '../Containers/LaunchScreen'
-import RunTracker from '../Containers/RunTracker'
+import RunTracker from '../Containers/RunTrackerScreen'
+import LoginScreen from '../Containers/LoginScreen'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
