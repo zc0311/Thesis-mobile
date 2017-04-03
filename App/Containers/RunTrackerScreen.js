@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 import { Images } from './DevTheme'
 import MapView from 'react-native-maps'
 import styles from './Styles/RunTrackerScreenStyles'
-
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 
 class RunTrackerScreen extends React.Component {
@@ -22,6 +22,7 @@ class RunTrackerScreen extends React.Component {
       (position) => {
         var initialPosition = JSON.stringify(position);
         this.setState({initialPosition: position.coords});
+        this.setState({lastPosition: position.coords});
         console.log(initialPosition, "this is init post")
         
       },
@@ -29,34 +30,41 @@ class RunTrackerScreen extends React.Component {
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      var lastPosition = JSON.stringify(position);
-      this.setState({lastPosition});
+      this.setState({lastPosition: {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                latitudeDelta: 0.00922,
+                longitudeDelta: 0.00421,
+              }});
+      
       this.setState({
         coordinates: [...this.state.coordinates, {latitude: position.coords.latitude, longitude: position.coords.longitude}]
       }
       )
-      console.log("this is LAST position", lastPosition)
       console.log("this is long for last pos",position.coords)
       console.log({latitude: position.coords.latitude, longitude: position.coords.longitude})
 
     });
+  }
+    componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
 
   render () {
     console.log("THIS IS STATEEEEEE", this.state)
     // console.log(this.state.initialPosition, "this is state")
-    if(!this.state.initialPosition.latitude){
-      return (
-        <Text style={styles.title}>LOADING </Text>
-      )
+    // if(!this.state.initialPosition.latitude){
+    //   return (
+    //     <Text style={styles.title}>LOADING </Text>
+    //   )
 
-    }
+    // }
     return (
       
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <TouchableOpacity onPress={() => this.props.navigation.goBack(null)} style={{
+        <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
           position: 'absolute',
           paddingTop: 30,
           paddingHorizontal: 5,
@@ -71,35 +79,35 @@ class RunTrackerScreen extends React.Component {
           </View>
 
           <View style={styles.section}>
-            {/*<Text style={styles.sectionText} >
-              The Plugin Examples screen is a playground for 3rd party libs and logic proofs.
-              Items on this screen can be composed of multiple components working in concert.  Functionality demos of libs and practices
-            </Text>*/}
           </View>
           <View
-    style={{
-      alignItems: 'center'
-    }}>
-    <MapView
-      style={{
-        width: 320,
-        height: 320
-      }}
-      initialRegion={{
-        latitude: this.state.initialPosition.latitude,
-        longitude: this.state.initialPosition.longitude,
-        latitudeDelta: 1.1922,
-        longitudeDelta: 1.1421,
-      }}
-    >
-    <MapView.Polyline
-        coordinates={this.state.coordinates}
-        strokeColor="blue"
-        strokeWidth={5}
-     
-     />
-    </MapView>
-  </View>
+            style={{
+              alignItems: 'center'
+            }}>
+            <MapView.Animated
+              style={{
+                width: 320,
+                height: 320
+              }}
+              initialRegion={{
+                latitude: this.state.lastPosition.latitude,
+                longitude: this.state.lastPosition.longitude,
+                latitudeDelta: 0.00022,
+                longitudeDelta: 0.00021,
+              }}
+
+              showsUserLocation={true}
+              followsUserLocation={true}
+              showsCompass={true}
+            >
+            <MapView.Polyline
+                coordinates={this.state.coordinates}
+                strokeColor="blue"
+                strokeWidth={5}
+            
+            />
+            </MapView.Animated>
+          </View>
 
 
           {/*<View style={styles.screenButtons} />*/}
@@ -117,7 +125,7 @@ export default StackNavigator({
   initialRouteName: 'RunTrackerScreen',
   navigationOptions: {
     header: {
-      visible: false,
+      visible: true,
       style: {
         backgroundColor: '#3e243f'
       }

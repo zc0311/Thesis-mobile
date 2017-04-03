@@ -3,6 +3,7 @@ package com.lemiz2;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.auth0.lock.react.LockReactPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new LockReactPackage(),
             new MapsPackage(),
             new VectorIconsPackage(),
             new RNDeviceInfo(),
