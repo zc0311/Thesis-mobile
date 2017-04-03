@@ -9,35 +9,33 @@ import { connect } from 'react-redux'
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
-
-var Auth0Lock = require('react-native-lock');
-var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 'lameme.auth0.com', allowedConnections: ['facebook']});
+var Auth0Lock = require('react-native-lock')
+var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 'lameme.auth0.com', allowedConnections: ['facebook']})
 
 @connect(store => ({
-  loggedIn: store,
+  loggedIn: store
 }))
 
 export default class LaunchScreen extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {}
-    this.showLogin = this.showLogin.bind(this);
+    this.showLogin = this.showLogin.bind(this)
   }
 
-  showLogin() {
+  showLogin () {
     console.log(this.props)
     lock.show({connections: ['facebook', 'Username-Password-Authentication']}, (err, profile, token) => {
       if (err) {
-        console.log(err);
-        return;
+        console.log(err)
+        return
       }
       // Authentication worked!
-      console.log('Logged in with Auth0!');
-    });
+      console.log('Logged in with Auth0!')
+    })
   }
 
   render () {
-
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
@@ -50,13 +48,11 @@ export default class LaunchScreen extends React.Component {
               <ButtonBox onPress={NavigationActions.runTracker} style={styles.componentButton} image={Images.chevronRight} text="Let's Run" />
               <ButtonBox onPress={this.showLogin} style={styles.usageButton} image={Images.components} text='View Profile' />
             </View>
-            </View>
-
+          </View>
 
         </ScrollView>
       </View>
     )
   }
 }
-
 

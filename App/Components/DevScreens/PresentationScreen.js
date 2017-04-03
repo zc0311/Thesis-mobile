@@ -53,8 +53,7 @@ class PresentationScreen extends React.Component {
           <Image source={Images.closeButton} />
         </TouchableOpacity>
         <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.container}>
-          <View style={styles.centered}>
-          </View>
+          <View style={styles.centered} />
 
           <Text style={styles.sectionText}>
             Default screens for development, debugging, and alpha testing
