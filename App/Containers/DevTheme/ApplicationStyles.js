@@ -44,6 +44,20 @@ const ApplicationStyles = {
       ...Fonts.style.h2,
       fontSize: 14,
       color: Colors.text
+    },
+    popupContainer: {
+      zIndex: 100
+    },
+    popup: {
+      width: '90%',
+      height: 190,
+      borderColor: 'salmon',
+      borderWidth: 3
+    },
+    popupText: {
+      fontSize: 38,
+      textAlign: 'center',
+      marginTop: 15
     }
   },
   darkLabelContainer: {

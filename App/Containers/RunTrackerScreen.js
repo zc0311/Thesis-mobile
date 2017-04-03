@@ -5,7 +5,11 @@ import { Images } from './DevTheme'
 import MapView from 'react-native-maps'
 import styles from './Styles/RunTrackerScreenStyles'
 import RoundedButton from '../../App/Components/RoundedButton'
+<<<<<<< HEAD
 import { Actions as NavigationActions } from 'react-native-router-flux'
+=======
+import PopupDialog, {dialogStyle} from 'react-native-popup-dialog';
+>>>>>>> time alert popup
 
 class RunTrackerScreen extends React.Component {
   constructor(props) {
@@ -67,12 +71,12 @@ class RunTrackerScreen extends React.Component {
     var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
     var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
     if (totalSeconds >= 3600) {
-      var timeMsg = 'Your total time: ' + hours + ' hr ' + minutes + ' min ' + seconds + ' sec';
+      var timeMsg = 'Total time: \n' + hours + ' hr \n' + minutes + ' min ' + seconds.toFixed(2) + ' sec';
     } else {
-      var timeMsg = 'Your total time: ' + minutes + ' min ' + seconds + ' sec';
+      var timeMsg = 'Total time: \n' + minutes + ' min ' + seconds.toFixed(2) + ' sec';
     }
     this.setState({text: 'start', timerOpacity: 0.0, timer: '0:00', end: endTime, timeMsg: timeMsg});
-    window.alert(timeMsg);
+    this.popupDialog.show();
   }
 
 
@@ -119,6 +123,22 @@ class RunTrackerScreen extends React.Component {
     return (
 
       <View style={styles.mainContainer}>
+
+        <View style={styles.popupContainer}>
+          <PopupDialog 
+            dialogStyle={styles.popup}
+            ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+
+          
+          >
+          <View >
+            <Text style={styles.popupText}>{this.state.timeMsg}</Text>
+            <RoundedButton text="okay" onPress={() => {this.popupDialog.dismiss()}}> 
+            </RoundedButton>
+          </View>
+         </PopupDialog>
+        </View>
+
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
           position: 'absolute',
@@ -136,6 +156,7 @@ class RunTrackerScreen extends React.Component {
     }}><Text style={{fontSize: 50, paddingTop: 20, paddingBottom: 20, opacity: this.state.timerOpacity}}>
        {this.state.timer || '0:00'}
     </Text></View>
+<<<<<<< HEAD
           <View style={styles.section} />
           <View
             style={{
@@ -165,6 +186,38 @@ class RunTrackerScreen extends React.Component {
             />
             </MapView.Animated>
           </View>
+=======
+  
+          <View
+    style={{
+      alignItems: 'center'
+    }}>
+    <MapView
+      style={{
+        width: 320,
+        height: 320
+      }}
+      initialRegion={{
+        latitude: 50,
+        longitude: -122.4324,
+        latitudeDelta: 1.1922,
+        longitudeDelta: 1.1421,
+      }}
+    >
+
+    <MapView.Polyline
+        coordinates={[
+          {latitude: 40, longitude: -100},
+          {latitude: 50, longitude: -122.4324},
+          {latitude: 70, longitude: -130}
+        ]}
+        strokeColor="blue"
+        strokeWidth={5}
+     
+     />
+    </MapView>
+  </View>
+>>>>>>> time alert popup
 
          <RoundedButton
             text={this.state.text}
