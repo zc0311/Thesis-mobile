@@ -16,7 +16,10 @@ class RunTrackerScreen extends React.Component {
         timer: '',
         start: '', 
         end: '',
-        timeMsg: ''
+        timeMsg: '',
+        initialPosition: {},
+        lastPosition: {},
+        coordinates: []
       };
     }
 
@@ -71,11 +74,7 @@ class RunTrackerScreen extends React.Component {
     this.setState({text: 'start', timerOpacity: 0.0, timer: '0:00', end: endTime, timeMsg: timeMsg});
     window.alert(timeMsg);
   }
-  state = {
-    initialPosition: {},
-    lastPosition: {},
-    coordinates: []
-  };
+
 
   watchID: ?number = null;
 
@@ -111,13 +110,12 @@ class RunTrackerScreen extends React.Component {
   }
 
   render () {
-    // console.log(this.state.initialPosition, "this is state")
-    // if(!this.state.initialPosition.latitude){
-    //   return (
-    //     <Text style={styles.title}>LOADING </Text>
-    //   )
-
-    // }
+    console.log(this.state.initialPosition, "this is state")
+    if(!this.state.initialPosition.latitude){
+      return (
+        <Text style={styles.title}>LOADING </Text>
+      )
+    }
     return (
 
       <View style={styles.mainContainer}>
