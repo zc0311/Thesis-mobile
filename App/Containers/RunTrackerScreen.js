@@ -6,6 +6,7 @@ import MapView from 'react-native-maps'
 import styles from './Styles/RunTrackerScreenStyles'
 import RoundedButton from '../../App/Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import PopupDialog, {dialogStyle} from 'react-native-popup-dialog';
 
 class RunTrackerScreen extends React.Component {
   constructor(props) {
@@ -67,12 +68,12 @@ class RunTrackerScreen extends React.Component {
     var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
     var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
     if (totalSeconds >= 3600) {
-      var timeMsg = 'Your total time: ' + hours + ' hr ' + minutes + ' min ' + seconds + ' sec';
+      var timeMsg = 'Total time: \n' + hours + ' hr \n' + minutes + ' min ' + seconds.toFixed(2) + ' sec';
     } else {
-      var timeMsg = 'Your total time: ' + minutes + ' min ' + seconds + ' sec';
+      var timeMsg = 'Total time: \n' + minutes + ' min ' + seconds.toFixed(2) + ' sec';
     }
     this.setState({text: 'start', timerOpacity: 0.0, timer: '0:00', end: endTime, timeMsg: timeMsg});
-    window.alert(timeMsg);
+    this.popupDialog.show();
   }
 
 
@@ -119,6 +120,22 @@ class RunTrackerScreen extends React.Component {
     return (
 
       <View style={styles.mainContainer}>
+
+        <View style={styles.popupContainer}>
+          <PopupDialog 
+            dialogStyle={styles.popup}
+            ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+
+          
+          >
+          <View >
+            <Text style={styles.popupText}>{this.state.timeMsg}</Text>
+            <RoundedButton text="okay" onPress={() => {this.popupDialog.dismiss()}}> 
+            </RoundedButton>
+          </View>
+         </PopupDialog>
+        </View>
+
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
           position: 'absolute',
@@ -165,7 +182,6 @@ class RunTrackerScreen extends React.Component {
             />
             </MapView.Animated>
           </View>
-
          <RoundedButton
             text={this.state.text}
             onPress={this.handleClick}
