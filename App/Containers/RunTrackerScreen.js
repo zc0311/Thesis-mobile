@@ -26,7 +26,8 @@ class RunTrackerScreen extends React.Component {
         timeMsg: '',
         initialPosition: {},
         lastPosition: {},
-        coordinates: []
+        coordinates: [], 
+        distance: 0
       };
     }
 
@@ -38,15 +39,39 @@ class RunTrackerScreen extends React.Component {
     }
   }
 
+  calcDistance = (lat1, lon1, lat2, lon2, unit) => {
+    var radlat1 = Math.PI * lat1/180
+	var radlat2 = Math.PI * lat2/180
+	var theta = lon1-lon2
+	var radtheta = Math.PI * theta/180
+	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	dist = Math.acos(dist)
+	dist = dist * 180/Math.PI
+	dist = dist * 60 * 1.1515
+	if (unit=="K") { dist = dist * 1.609344 }
+	if (unit=="N") { dist = dist * 0.8684 }
+	return dist
+  }
+
   startTimer = () => {
     this.watchID = navigator.geolocation.watchPosition((position) => {
+      if(this.state.coordinates.length){
+        console.log(position.coords.latitude, "THIS IS POS LATTTT")
+        console.log(this.state.coordinates[this.state.coordinates.length-1].latitude, "this is the long latt thing")
+      var tempdistance = this.state.distance + this.calcDistance(position.coords.latitude, position.coords.longitude, this.state.coordinates[this.state.coordinates.length-1].latitude, this.state.coordinates[this.state.coordinates.length-1].longitude, "M")
+      this.setState({
+        distance: tempdistance
+      })
+  }
+    
+
       this.setState({lastPosition: {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
         latitudeDelta: 0.00922,
         longitudeDelta: 0.00421
       }})
-
+         
       this.setState({
         coordinates: [...this.state.coordinates, {latitude: position.coords.latitude, longitude: position.coords.longitude}]
       }
@@ -87,7 +112,7 @@ class RunTrackerScreen extends React.Component {
     var totalSeconds = (endTime - this.state.start).toFixed(2);
     var runHistoryEntry = {
       duration: totalSeconds,
-      distance: 0.00, // add distance
+      distance: this.state.distance, // add distance
       coordinates: this.state.coordinates,
       initialPosition: this.state.initialPosition,
       today: Date.now(),
@@ -138,6 +163,7 @@ class RunTrackerScreen extends React.Component {
   }
 
   render () {
+    console.log(this.state.distance, "THIS IS DISTANCE")
     if(!this.state.initialPosition.latitude){
       return (
         <Text style={styles.title}>LOADING </Text>
@@ -173,9 +199,16 @@ class RunTrackerScreen extends React.Component {
 
     <View style={{
       alignItems: 'center'
-    }}><Text style={{fontSize: 50, paddingTop: 20, paddingBottom: 20, opacity: this.state.timerOpacity}}>
+    }}><Text style={{fontSize: 50, paddingTop: 10, paddingBottom: 0, opacity: this.state.timerOpacity}}>
        {this.state.timer || '0:00'}
-    </Text></View>
+
+    </Text>
+    <Text style={{fontSize: 50, paddingTop: 0, paddingBottom: 0}}>
+       {this.state.distance.toFixed(2)} miles
+    </Text>
+    
+    </View>
+          <View style={styles.section} />
           <View
             style={{
               alignItems: 'center'
