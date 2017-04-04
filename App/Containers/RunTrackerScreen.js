@@ -151,8 +151,6 @@ class RunTrackerScreen extends React.Component {
           <PopupDialog 
             dialogStyle={styles.popup}
             ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-
-          
           >
           <View >
             <Text style={styles.popupText}>{this.state.timeMsg}</Text>
@@ -162,7 +160,6 @@ class RunTrackerScreen extends React.Component {
          </PopupDialog>
         </View>
 
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
           position: 'absolute',
           paddingTop: 30,
@@ -179,7 +176,6 @@ class RunTrackerScreen extends React.Component {
     }}><Text style={{fontSize: 50, paddingTop: 20, paddingBottom: 20, opacity: this.state.timerOpacity}}>
        {this.state.timer || '0:00'}
     </Text></View>
-          <View style={styles.section} />
           <View
             style={{
               alignItems: 'center'
@@ -228,7 +224,7 @@ export default StackNavigator({
     header: {
       visible: true,
       style: {
-        backgroundColor: '#3e243f'
+        backgroundColor: 'teal'
       }
     }
   }
