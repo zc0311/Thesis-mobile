@@ -24,7 +24,7 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
   showLogin () {
     lock.show({connections: ['facebook', 'Username-Password-Authentication']}, (err, profile, token) => {
       if (err) {
-        alert(err)
+        console.log(err)
         return
       } else {
       this.props.success(profile);
@@ -34,11 +34,11 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
         profile,
       }})
       .then((result) => {
-        alert(result)
+        console.log(result)
         // dispatch(signInSuccess(result.data));
       })
       .catch((err) => {
-        alert(err)
+        console.log(err)
       })
       }
     })

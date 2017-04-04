@@ -8,7 +8,7 @@ import RoundedButton from '../../App/Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import PopupDialog, {dialogStyle} from 'react-native-popup-dialog';
 import { connect } from 'react-redux'
-
+import axios from 'axios';
 
 @connect(store => ({
   userinfo: store.login.username
@@ -39,6 +39,21 @@ class RunTrackerScreen extends React.Component {
   }
 
   startTimer = () => {
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      this.setState({lastPosition: {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        latitudeDelta: 0.00922,
+        longitudeDelta: 0.00421
+      }})
+
+      this.setState({
+        coordinates: [...this.state.coordinates, {latitude: position.coords.latitude, longitude: position.coords.longitude}]
+      }
+      )
+    }, 
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 250, maximumAge: 0, desiredAccuracy: 0, frequency: 1 })
     var startTime = (Date.now()/1000).toFixed(2);
     this.setState({text: 'stop', timerOpacity: 1.0, start: startTime});
     var startTimeSeconds = Math.floor(startTime);
@@ -70,6 +85,26 @@ class RunTrackerScreen extends React.Component {
   stopTimer = () => {
     var endTime = (Date.now()/1000).toFixed(2);
     var totalSeconds = (endTime - this.state.start).toFixed(2);
+    var runHistoryEntry = {
+      duration: totalSeconds,
+      distance: 0.00, // add distance
+      coordinates: this.state.coordinates,
+      initialPosition: this.state.initialPosition,
+      today: Date.now(),
+      userID: this.props.userinfo.userId,
+    }
+    axios.post('https://lemiz2.herokuapp.com/api/runHistory', { params: {
+      runHistoryEntry
+    }})
+    .then((result) => {
+      console.log("axios sent")
+      console.log(result)
+      // dispatch(signInSuccess(result.data));
+    })
+    .catch((err) => {
+      console.log("axios error");
+      console.log(err)
+    })
     var hours = Math.floor(totalSeconds / 3600);
     var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
     var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
@@ -80,6 +115,8 @@ class RunTrackerScreen extends React.Component {
     }
     this.setState({text: 'start', timerOpacity: 0.0, timer: '0:00', end: endTime, timeMsg: timeMsg});
     this.popupDialog.show();
+    navigator.geolocation.clearWatch(this.watchID)
+
   }
 
 
@@ -92,29 +129,15 @@ class RunTrackerScreen extends React.Component {
         this.setState({initialPosition: position.coords})
         this.setState({lastPosition: position.coords})
       },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      (error) => console.log(error),
+      {enableHighAccuracy: true, timeout: 250, maximumAge: 0}
     )
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      this.setState({lastPosition: {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-        latitudeDelta: 0.00922,
-        longitudeDelta: 0.00421
-      }})
-
-      this.setState({
-        coordinates: [...this.state.coordinates, {latitude: position.coords.latitude, longitude: position.coords.longitude}]
-      }
-      )
-    })
   }
   componentWillUnmount () {
     navigator.geolocation.clearWatch(this.watchID)
   }
 
   render () {
-    console.log(this.props.userinfo)
     if(!this.state.initialPosition.latitude){
       return (
         <Text style={styles.title}>LOADING </Text>
