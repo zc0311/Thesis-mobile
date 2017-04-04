@@ -228,7 +228,7 @@ export default StackNavigator({
     header: {
       visible: true,
       style: {
-        backgroundColor: '#3e243f'
+        backgroundColor: 'teal'
       }
     }
   }
