@@ -26,7 +26,8 @@ class RunTrackerScreen extends React.Component {
         timeMsg: '',
         initialPosition: {},
         lastPosition: {},
-        coordinates: []
+        coordinates: [], 
+        distance: 0
       };
     }
 
