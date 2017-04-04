@@ -5,18 +5,16 @@ import ButtonBox from './ButtonBox'
 import {Actions as NavigationActions } from 'react-native-router-flux'
 import LoginActions from '../Redux/LoginRedux'
 import { connect } from 'react-redux'
-
-// Styles
 import styles from './Styles/LaunchScreenStyles'
+import userDefaults from 'react-native-user-defaults'
+import axios from 'axios';
 
-var Auth0Lock = require('react-native-lock')
+
+var Auth0Lock = require('react-native-lock');
 var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 'lameme.auth0.com', allowedConnections: ['facebook']})
 
-@connect(store => ({
-  loggedIn: store
-}))
 
-export default class LaunchScreen extends React.Component {
+ class LaunchScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {}
@@ -24,15 +22,32 @@ export default class LaunchScreen extends React.Component {
   }
 
   showLogin () {
-    console.log(this.props)
     lock.show({connections: ['facebook', 'Username-Password-Authentication']}, (err, profile, token) => {
       if (err) {
-        console.log(err)
+        alert(err)
         return
+      } else {
+      this.props.success(profile);
+      var userID = profile.userId;
+      axios.post('https://lemiz2.herokuapp.com/api/users', { params: {
+        userID,
+        profile,
+      }})
+      .then((result) => {
+        alert(result)
+        // dispatch(signInSuccess(result.data));
+      })
+      .catch((err) => {
+        alert(err)
+      })
       }
-      // Authentication worked!
-      console.log('Logged in with Auth0!')
     })
+  }
+
+  componentWillMount() {
+    if (!this.props.username) {
+      this.showLogin()
+    } 
   }
 
   render () {
@@ -56,3 +71,16 @@ export default class LaunchScreen extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    username: state.login.username
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    success: (username) => dispatch(LoginActions.loginSuccess(username)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LaunchScreen)
