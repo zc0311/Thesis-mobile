@@ -7,6 +7,12 @@ import styles from './Styles/RunTrackerScreenStyles'
 import RoundedButton from '../../App/Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import PopupDialog, {dialogStyle} from 'react-native-popup-dialog';
+import { connect } from 'react-redux'
+
+
+@connect(store => ({
+  userinfo: store.login.username
+}))
 
 class RunTrackerScreen extends React.Component {
   constructor(props) {
@@ -85,7 +91,6 @@ class RunTrackerScreen extends React.Component {
         var initialPosition = JSON.stringify(position)
         this.setState({initialPosition: position.coords})
         this.setState({lastPosition: position.coords})
-        console.log(initialPosition, 'this is init post')
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
@@ -102,8 +107,6 @@ class RunTrackerScreen extends React.Component {
         coordinates: [...this.state.coordinates, {latitude: position.coords.latitude, longitude: position.coords.longitude}]
       }
       )
-      console.log('this is long for last pos', position.coords)
-      console.log({latitude: position.coords.latitude, longitude: position.coords.longitude})
     })
   }
   componentWillUnmount () {
@@ -111,7 +114,7 @@ class RunTrackerScreen extends React.Component {
   }
 
   render () {
-    console.log(this.state.initialPosition, "this is state")
+    console.log(this.props.userinfo)
     if(!this.state.initialPosition.latitude){
       return (
         <Text style={styles.title}>LOADING </Text>
