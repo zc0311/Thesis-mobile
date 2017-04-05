@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import styles from './Styles/LaunchScreenStyles'
 import userDefaults from 'react-native-user-defaults'
 import axios from 'axios';
+import RoundedButton from '../../App/Components/RoundedButton'
 
 
 var Auth0Lock = require('react-native-lock');
@@ -44,6 +45,11 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
     })
   }
 
+
+  handleClick = () => {
+
+  }
+
   componentWillMount() {
     if (!this.props.username) {
       this.showLogin()
@@ -58,10 +64,16 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
           <View style={styles.centered}>
             <Image source={Images.launch} style={styles.logo} />
           </View>
-          <View style={{paddingTop: 150}}>
+          <View style={{paddingTop: 25}}>
+          <RoundedButton
+            text={"View Packs"}
+            onPress={this.handleClick}
+          />
+          </View>
+          <View style={{paddingTop: 25}}>
             <View style={styles.buttonsContainer}>
-              <ButtonBox onPress={NavigationActions.runTracker} style={styles.componentButton} image={Images.chevronRight} text="Let's Run" />
-              <ButtonBox onPress={this.showLogin} style={styles.usageButton} image={Images.components} text='View Profile' />
+              <ButtonBox onPress={NavigationActions.runTracker} style={styles.componentButton} image={Images.colorRun} text="Let's Run" />
+              <ButtonBox onPress={this.showLogin} style={styles.usageButton} image={Images.home} text='Challenges & Goals' />
             </View>
           </View>
 

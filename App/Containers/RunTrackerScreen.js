@@ -124,6 +124,19 @@ class RunTrackerScreen extends React.Component {
     .then((result) => {
       console.log("axios sent")
       console.log(result)
+
+      // this.setState({
+      //   text: 'start',
+      //   timerOpacity: 0.0,
+      //   timer: '',
+      //   start: '', 
+      //   end: '',
+      //   timeMsg: '',
+      //   initialPosition: {},
+      //   lastPosition: {},
+      //   coordinates: [], 
+      //   distance: 0
+      // })
       // dispatch(signInSuccess(result.data));
     })
     .catch((err) => {
