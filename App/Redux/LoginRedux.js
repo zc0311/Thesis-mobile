@@ -6,6 +6,7 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
   loginSuccess: ['username'],
+  loginUpdate: ['userobj'],
   loginFailure: ['error'],
   logout: null
 })
@@ -17,6 +18,7 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   username: null,
+  userobj: null,
   error: null,
   fetching: false
 })
@@ -30,6 +32,9 @@ export const request = (state) => state.merge({ fetching: true })
 export const success = (state, { username }) =>
   state.merge({ fetching: false, error: null, username })
 
+  export const update = (state, {userobj}) =>
+  state.merge({ fetching: false, error: null, userobj })
+
 // we've had a problem logging in
 export const failure = (state, { error }) =>
   state.merge({ fetching: false, error })
@@ -41,6 +46,7 @@ export const logout = (state) => INITIAL_STATE
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
+  [Types.LOGIN_UPDATE]: update,
   [Types.LOGIN_SUCCESS]: success,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout

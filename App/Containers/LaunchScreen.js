@@ -18,7 +18,10 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
  class LaunchScreen extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+
+    }
+
     this.showLogin = this.showLogin.bind(this)
   }
 
@@ -37,6 +40,7 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
       .then((result) => {
         console.log(result)
         // dispatch(signInSuccess(result.data));
+        this.props.updateuser(result.data)
       })
       .catch((err) => {
         console.log(err)
@@ -57,6 +61,7 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
   }
 
   render () {
+    // console.log(this.props.userobj, "THIS IS PROPS")
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
@@ -85,13 +90,16 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
 
 const mapStateToProps = (state) => {
   return {
-    username: state.login.username
+    username: state.login.username,
+    userobj: state.login.userobj
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     success: (username) => dispatch(LoginActions.loginSuccess(username)),
+    updateuser: (userobj) => dispatch(LoginActions.loginUpdate(userobj))
   }
 }
 

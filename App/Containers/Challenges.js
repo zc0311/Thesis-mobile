@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import axios from 'axios';
 import { StackNavigator } from 'react-navigation'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
-import styles from './Styles/LaunchScreenStyles'
 
 
 @connect(store => ({
@@ -29,7 +28,7 @@ export default class Goals extends React.Component {
     //   console.log(this.props.userobj, "this is userobj")
 
       if(!this.props.userobj){
-        //   console.log("INSIDE")
+
       return (
         <Text>LOADING </Text>
       )
@@ -38,8 +37,8 @@ export default class Goals extends React.Component {
     return (
         <View>
         <View>
-    <Text style={{fontSize: 50, paddingTop: 40, paddingBottom: 15}}>
-       GOALS
+    <Text style={{fontSize: 50, paddingTop: 15, paddingBottom: 15}}>
+       CHALLENGES
     </Text>
     </View>
         <View>
@@ -52,21 +51,3 @@ export default class Goals extends React.Component {
     )
   }
 }
-
-
-// export default StackNavigator({
-//   Goals: {screen: Goals}
-// }, {
-//   headerMode: 'screen',
-//   initialRouteName: 'Goals',
-//   navigationOptions: {
-//     header: {
-//       visible: true,
-//       style: {
-//         backgroundColor: 'teal'
-//       }
-//     }
-//   }
-// })
-// AppRegistry.registerComponent('ListViewBasics', () => ListViewBasics);
-

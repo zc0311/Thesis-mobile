@@ -10,6 +10,7 @@ import { StackNavigator } from 'react-navigation'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import RunTrackerScreen from './RunTrackerScreen'
 import GoalsPage from './Goals'
+import ChallengePage from './Challenges'
 
 @connect(store => ({
   userinfo: store.login.username
@@ -19,41 +20,32 @@ class CGscreen extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-
+   
       };
     }
 
 
+
   render () {
     return (
-        <View>
- 
-      <ScrollableTabView>
-        <GoalsPage tabLabel="Run"/>
-        <RunTrackerScreen tabLabel="Flow" />
+      <View>
+       <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
+          position: 'absolute',
+          paddingTop: 7,
+          paddingHorizontal: 5,
+          zIndex: 10
+        }}>
+          <Image source={Images.backButton} />
+        </TouchableOpacity>
+      <ScrollView>
 
-        <View tabLabel="Jest">
-         <RoundedButton
-            text={"Whoa"}
-            onPress={this.handleClick}
-          /><RoundedButton
-            text={"Whoa"}
-            onPress={this.handleClick}
-          /><RoundedButton
-            text={"Whoa"}
-            onPress={this.handleClick}
-          /><RoundedButton
-            text={"Whoa"}
-            onPress={this.handleClick}
-          /><RoundedButton
-            text={"Whoa"}
-            onPress={this.handleClick}
-          />
-        </View>
-   
-      </ScrollableTabView>
+      <View>
+        <GoalsPage/>
+        <ChallengePage/>
+      </View>
+      </ScrollView>
+      </View>
 
-        </View>
     )
   }
 }
