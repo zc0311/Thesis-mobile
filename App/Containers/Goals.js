@@ -26,7 +26,7 @@ export default class Goals extends React.Component {
 
   render () {
     //   console.log(this.state.data2, "This is data2")
-    //   console.log(this.props.userobj, "this is userobj")
+      // console.log(this.props.userobj.Challenges, "this is userobj Challenges")
 
       if(!this.props.userobj){
         //   console.log("INSIDE")
@@ -43,6 +43,7 @@ export default class Goals extends React.Component {
     </Text>
     </View>
         <View>
+            
          {this.props.userobj.Challenges.map((ele) => {
         return (<Text>{ele["description"]}</Text>)
         })}
