@@ -44,10 +44,13 @@ export default class Goals extends React.Component {
     </View>
         <View>
             
-         {this.props.userobj.Challenges.map((ele) => {
-        return (<Text>{ele["description"]}</Text>)
+         {this.props.userobj.Challenges.map((ele, idx) => {
+           if (ele.source === null && ele.status === 'accepted'){
+        return (<Text key={idx}> My Goal: {ele["description"]}</Text>)
+           } else if (ele.source === null && ele.status === 'generated'){
+              return (<Text key={idx}> Rabbit Goal: {ele["description"]}</Text>)
+           } 
         })}
-       
       </View>
       </View>
     )
