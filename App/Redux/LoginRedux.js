@@ -20,7 +20,8 @@ export const INITIAL_STATE = Immutable({
   username: null,
   userobj: null,
   error: null,
-  fetching: false
+  fetching: false,
+  currentPack: null
 })
 
 /* ------------- Reducers ------------- */
