@@ -25,6 +25,7 @@ class NavigationRouter extends Component {
             <Scene key='runTracker' component={RunTracker} title='LaunchScreen' hideNavBar />
             <Scene key='cgscreen' component={CGscreen} title='LaunchScreen' hideNavBar />
             <Scene key='goalscreen' component={Goalscreen} title='LaunchScreen' hideNavBar />
+            <Scene key='packsScreen' component={PacksScreen} title='LaunchScreen' hideNavBar />
           </Scene>
         </Scene>
       </Router>
