@@ -23,26 +23,40 @@ export default class PacksScreen extends React.Component {
         };
     }
 
+    setCurrentPack(pack) {
+        this.setState = { currentPack: pack };
+        console.log('PACK SET ', pack)
+    }
+
 
     render() {
-        console.log(this.props.userobj)
-        // if (!this.props.userobj) {
-        //     return (
-        //         <Text>LOADING </Text>
-        //     )
-        // }
+        if (!this.props.userobj) {
+            return (
+                <Text>LOADING </Text>
+            )
+        }
 
         return (
             <View>
+                <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
+                    position: 'absolute',
+                    paddingTop: 7,
+                    paddingHorizontal: 5,
+                    zIndex: 10
+                }}>
+                    <Image source={Images.backButton} />
+                </TouchableOpacity>
                 <View>
                     <Text style={{ fontSize: 50, paddingTop: 40, paddingBottom: 15 }}>
                         PACKS
                     </Text>
                 </View>
-                    {this.props.userobj.Packs.map((ele, idx) => {
-                        return (<Text key={idx}>{ele["name"]}</Text>)
-                        }
-                    )}
+                {this.props.userobj.Packs.map((ele, idx) => {
+                    return (
+                            <Text key={idx}>{ele["name"]}</Text>
+                    )
+                }
+                )}
                 <View>
                 </View>
             </View>
@@ -50,4 +64,12 @@ export default class PacksScreen extends React.Component {
     }
 }
 
-//Rabbit Goal: {ele["description"]}
+//create a store property currentPack set to null
+//each pack in mobile packs list needs a button to set it to currentPack
+//when you send back run data, it should include a currentPack tag
+
+// <TouchableOpacity onPress={this.setCurrentPack()}> 
+//     <View> <Text>{ele["name"]}</Text> </View> 
+// </TouchableOpacity>
+
+//add key
