@@ -9,6 +9,7 @@ import RunTracker from '../Containers/RunTrackerScreen'
 import LoginScreen from '../Containers/LoginScreen'
 import CGscreen from '../Containers/CGscreen'
 import Goalscreen from '../Containers/Goals'
+import PacksScreen from '../Containers/PacksScreen'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
