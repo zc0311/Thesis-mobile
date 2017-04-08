@@ -40,8 +40,10 @@ class CGscreen extends React.Component {
       <ScrollView>
 
       <View>
-        <GoalsPage/>
-        <ChallengePage/>
+         <ScrollableTabView>
+        <GoalsPage tabLabel="Goals"/>
+        <ChallengePage tabLabel="Challenges"/>
+        </ScrollableTabView>
       </View>
       </ScrollView>
       </View>
