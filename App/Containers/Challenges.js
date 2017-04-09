@@ -25,7 +25,7 @@ export default class Goals extends React.Component {
 
   render () {
     //   console.log(this.state.data2, "This is data2")
-    //   console.log(this.props.userobj, "this is userobj")
+      console.log(this.props.userobj, "this is userobj")
 
       if(!this.props.userobj){
 
@@ -37,15 +37,19 @@ export default class Goals extends React.Component {
     return (
         <View>
         <View>
-    <Text style={{fontSize: 50, paddingTop: 15, paddingBottom: 15}}>
+    <Text style={{fontSize: 50, paddingTop: 40, paddingBottom: 15}}>
        CHALLENGES
     </Text>
     </View>
         <View>
-         {this.props.userobj.Challenges.map((ele) => {
-        return (<Text>{ele["description"]}</Text>)
+            
+         {this.props.userobj.Challenges.map((ele, idx) => {
+           if (ele.source !== null && ele.status === 'accepted'){
+        return (<Text key={idx}> Challenge from {ele["source"]} : {ele["description"]}</Text>)
+           } else if (ele.source !== null && ele.status === 'pending'){
+              return (<Text key={idx}> Pending Challenge from {ele["source"]} : {ele["description"]}</Text>)
+           } 
         })}
-       
       </View>
       </View>
     )

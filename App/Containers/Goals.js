@@ -9,6 +9,7 @@ import axios from 'axios';
 import { StackNavigator } from 'react-navigation'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import styles from './Styles/LaunchScreenStyles'
+import { Button, Card } from 'react-native-material-design';
 
 
 @connect(store => ({
@@ -42,20 +43,32 @@ export default class Goals extends React.Component {
        GOALS
     </Text>
     </View>
+
         <View>
-            
+
          {this.props.userobj.Challenges.map((ele, idx) => {
            if (ele.source === null && ele.status === 'accepted'){
-        return (<Text key={idx}> My Goal: {ele["description"]}</Text>)
+        return (
+
+          <Text key={idx}> My Goal: {ele["description"]}</Text>
+
+           )
            } else if (ele.source === null && ele.status === 'generated'){
-              return (<Text key={idx}> Rabbit Goal: {ele["description"]}</Text>)
+              return (
+
+                <Text key={idx}> Rabbit Goal: {ele["description"]}</Text>
+
+                )
            } 
         })}
+
       </View>
       </View>
     )
   }
 }
+
+
 
 
 // export default StackNavigator({

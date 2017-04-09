@@ -99,7 +99,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     success: (username) => dispatch(LoginActions.loginSuccess(username)),
-    updateuser: (userobj) => dispatch(LoginActions.loginUpdate(userobj))
+    updateuser: (userobj) => dispatch(LoginActions.loginUpdate())
   }
 }
 

@@ -31,7 +31,7 @@ class CGscreen extends React.Component {
       <View>
        <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
           position: 'absolute',
-          paddingTop: 7,
+          paddingTop: 0,
           paddingHorizontal: 5,
           zIndex: 10
         }}>
