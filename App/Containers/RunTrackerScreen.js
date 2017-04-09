@@ -6,9 +6,9 @@ import MapView from 'react-native-maps'
 import styles from './Styles/RunTrackerScreenStyles'
 import RoundedButton from '../../App/Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import PopupDialog, {dialogStyle} from 'react-native-popup-dialog';
+import PopupDialog, {dialogStyle} from 'react-native-popup-dialog'
 import { connect } from 'react-redux'
-import axios from 'axios';
+import axios from 'axios'
 
 @connect(store => ({
   userinfo: store.login.username
@@ -30,7 +30,7 @@ class RunTrackerScreen extends React.Component {
         distance: 0,
       };
       console.log(this.props)
-    }
+  }
 
   handleClick = () => {
     if (this.state.text === 'start') {
@@ -118,7 +118,7 @@ class RunTrackerScreen extends React.Component {
       initialPosition: this.state.initialPosition,
       today: Date.now(),
       userID: this.props.userinfo.userId,
-      currentPack: this.props,
+      currentPack: this.props.currentPack,
       //current pack called from props here, not in state
       //this.props = { dispatch, navigation, userinfo }
     }
@@ -199,7 +199,7 @@ class RunTrackerScreen extends React.Component {
             <RoundedButton text="okay" onPress={() => {this.popupDialog.dismiss()}}> 
             </RoundedButton>
           </View>
-         </PopupDialog>
+          </PopupDialog>
         </View>
 
         <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
@@ -253,7 +253,7 @@ class RunTrackerScreen extends React.Component {
             />
             </MapView.Animated>
           </View>
-         <RoundedButton
+          <RoundedButton
             text={this.state.text}
             onPress={this.handleClick}
           />
