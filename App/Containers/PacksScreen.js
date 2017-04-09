@@ -15,19 +15,13 @@ import styles from './Styles/LaunchScreenStyles'
     userobj: store.login.userobj
 }))
 
-export default class PacksScreen extends React.Component {
+class PacksScreen extends React.Component {
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
         };
     }
-
-    setCurrentPack(pack) {
-        this.setState = { currentPack: pack };
-        console.log('PACK SET ', pack)
-    }
-
 
     render() {
         if (!this.props.userobj) {
@@ -53,7 +47,13 @@ export default class PacksScreen extends React.Component {
                 </View>
                 {this.props.userobj.Packs.map((ele, idx) => {
                     return (
-                            <Text key={idx}>{ele["name"]}</Text>
+                        // <TouchableOpacity onPress={setCurrentPack("TESTPACK")}>
+                        //     <View> <Text>{ele["name"]}</Text> </View> 
+                        // </TouchableOpacity>
+                        <Text key={idx}>
+                            {ele["name"]}
+                        </Text>
+                        //add a button that calls setCurrentPack
                     )
                 }
                 )}
@@ -64,11 +64,23 @@ export default class PacksScreen extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentPack: (pack) => dispatch(LoginActions.SETPACK(pack))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PacksScreen)
 //create a store property currentPack set to null
 //each pack in mobile packs list needs a button to set it to currentPack
 //when you send back run data, it should include a currentPack tag
 
-// <TouchableOpacity onPress={this.setCurrentPack()}> 
+// <TouchableOpacity onPress={this.setCurrentPack()}>
 //     <View> <Text>{ele["name"]}</Text> </View> 
 // </TouchableOpacity>
 
