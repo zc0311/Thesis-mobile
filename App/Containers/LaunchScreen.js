@@ -40,6 +40,7 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
       .then((result) => {
         console.log(result)
         // dispatch(signInSuccess(result.data));
+        console.log(this.props)
         this.props.updateuser(result.data)
       })
       .catch((err) => {
@@ -61,7 +62,7 @@ var lock = new Auth0Lock({clientId: 'KhDTuf4lq48s3Db6kEvHHaLGaQCb7ETk', domain: 
   }
 
   render () {
-    // console.log(this.props.userobj, "THIS IS PROPS")
+    console.log(this.props.userobj, "THIS IS PROPS")
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
@@ -99,7 +100,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     success: (username) => dispatch(LoginActions.loginSuccess(username)),
-    updateuser: (userobj) => dispatch(LoginActions.loginUpdate())
+    updateuser: (userobj) => dispatch(LoginActions.loginUpdate(userobj))
   }
 }
 
