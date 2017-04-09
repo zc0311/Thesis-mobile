@@ -32,8 +32,9 @@ export const request = (state) => state.merge({ fetching: true })
 export const success = (state, { username }) =>
   state.merge({ fetching: false, error: null, username })
 
-  export const update = (state, {userobj}) =>
+export const update = (state, { userobj }) => 
   state.merge({ fetching: false, error: null, userobj })
+  
 
 // we've had a problem logging in
 export const failure = (state, { error }) =>
