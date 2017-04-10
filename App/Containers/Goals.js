@@ -49,15 +49,19 @@ export default class Goals extends React.Component {
          {this.props.userobj.Challenges.map((ele, idx) => {
            if (ele.source === null && ele.status === 'accepted'){
         return (
-
+          <Card>
+            <Card.Body>
           <Text key={idx}> My Goal: {ele["description"]}</Text>
-
+          </Card.Body>
+          </Card>
            )
            } else if (ele.source === null && ele.status === 'generated'){
               return (
-
+                <Card>
+                  <Card.Body>
                 <Text key={idx}> Rabbit Goal: {ele["description"]}</Text>
-
+                </Card.Body>
+                </Card>
                 )
            } 
         })}
