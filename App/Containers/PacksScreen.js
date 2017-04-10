@@ -47,12 +47,12 @@ class PacksScreen extends React.Component {
                 </View>
                 {this.props.userobj.Packs.map((ele, idx) => {
                     return (
-                        // <TouchableOpacity onPress={setCurrentPack("TESTPACK")}>
-                        //     <View> <Text>{ele["name"]}</Text> </View> 
-                        // </TouchableOpacity>
-                        <Text key={idx}>
-                            {ele["name"]}
-                        </Text>
+                        <TouchableOpacity onPress={setCurrentPack("TESTPACK")}>
+                             <View> <Text>{ele["name"]}</Text> </View> 
+                        </TouchableOpacity>
+                        // <Text key={idx}>
+                        //     {ele["name"]}
+                        // </Text>
                         //add a button that calls setCurrentPack
                     )
                 }
