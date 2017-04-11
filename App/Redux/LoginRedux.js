@@ -8,7 +8,8 @@ const { Types, Creators } = createActions({
   loginSuccess: ['username'],
   loginUpdate: ['userobj'],
   loginFailure: ['error'],
-  logout: null
+  logout: null,
+  setCurrentPack: ['name']
 })
 
 export const LoginTypes = Types
@@ -45,8 +46,8 @@ state.merge({ fetching: false, error })
 export const logout = (state) => INITIAL_STATE
 
 //set pack
-export const setpack = (state, { pack }) =>
-state.merge({ currentPack: pack })
+export const setpack = (state, { name }) =>
+state.merge({ currentPack: name })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -56,7 +57,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_SUCCESS]: success,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout,
-  [Types.SETPACK]: setpack
+  [Types.SET_CURRENT_PACK]: setpack
 })
 
 /* ------------- Selectors ------------- */

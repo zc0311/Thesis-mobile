@@ -9,11 +9,9 @@ import axios from 'axios';
 import { StackNavigator } from 'react-navigation'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import styles from './Styles/LaunchScreenStyles'
+import LoginActions from '../Redux/LoginRedux'
 
 
-@connect(store => ({
-    userobj: store.login.userobj
-}))
 
 class PacksScreen extends React.Component {
     constructor(props) {
@@ -23,13 +21,16 @@ class PacksScreen extends React.Component {
         };
     }
 
+    packSetter(name) {
+        this.props.setPack(name);
+    }
+
     render() {
         if (!this.props.userobj) {
             return (
                 <Text>LOADING </Text>
             )
         }
-
         return (
             <View>
                 <TouchableOpacity onPress={() => NavigationActions.pop()} style={{
@@ -47,13 +48,9 @@ class PacksScreen extends React.Component {
                 </View>
                 {this.props.userobj.Packs.map((ele, idx) => {
                     return (
-                        <TouchableOpacity onPress={setCurrentPack("TESTPACK")}>
-                            <View> <Text>{ele["name"]}</Text> </View> 
+                        <TouchableOpacity onPress={() => this.packSetter(ele["name"])}>
+                            <Text>{ele["name"]}</Text>
                         </TouchableOpacity>
-                        // <Text key={idx}>
-                        //     {ele["name"]}
-                        // </Text>
-                        //add a button that calls setCurrentPack
                     )
                 }
                 )}
@@ -66,22 +63,15 @@ class PacksScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+      currentPack: state.login.currentPack,
+      userobj: state.login.userobj
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentPack: (pack) => dispatch(LoginActions.SETPACK(pack))
+    setPack: (name) => dispatch(LoginActions.setCurrentPack(name))
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PacksScreen)
-//create a store property currentPack set to null
-//each pack in mobile packs list needs a button to set it to currentPack
-//when you send back run data, it should include a currentPack tag
-
-// <TouchableOpacity onPress={this.setCurrentPack()}>
-//     <View> <Text>{ele["name"]}</Text> </View> 
-// </TouchableOpacity>
-
-//add key

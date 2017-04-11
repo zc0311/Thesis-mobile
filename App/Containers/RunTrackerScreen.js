@@ -11,7 +11,8 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 
 @connect(store => ({
-  userinfo: store.login.username
+  userinfo: store.login.username,
+  currentPack: store.login.currentPack
 }))
 
 class RunTrackerScreen extends React.Component {
@@ -122,6 +123,7 @@ class RunTrackerScreen extends React.Component {
       //current pack called from props here, not in state
       //this.props = { dispatch, navigation, userinfo }
     }
+    console.log(runHistoryEntry);
     axios.post('https://lemiz2.herokuapp.com/api/runHistory', { params: {
       runHistoryEntry
     }})
